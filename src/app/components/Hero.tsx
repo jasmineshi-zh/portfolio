@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { useIsDesktop } from '../hooks/useMediaQuery';
 
 // Replace with your actual profile photo in public/images/
-const profilePhoto = '/images/profile.jpg';
+const profilePhoto = '/images/profile.JPG';
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
