@@ -234,10 +234,10 @@ export function IMAModalContent() {
         </div>
 
         {/* Full-width photo */}
-        <AssetPlaceholder
-          label="User Interview Photo"
-          hint="public/images/ima/user-interviews.jpg"
-          height={220}
+        <img
+          src="/images/ima/user-interviews.jpg"
+          alt="User Interview Photo"
+          style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 12 }}
         />
 
         {/* Key Insight 1 */}

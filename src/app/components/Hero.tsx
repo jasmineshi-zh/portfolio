@@ -148,7 +148,7 @@ export function Hero() {
                   src={profilePhoto}
                   alt="Jasmine Shi"
                   className="w-full h-full object-cover relative z-10"
-                  style={{ objectPosition: 'center top' }}
+                  style={{ objectPosition: 'center top', transform: 'translateY(-8%) scale(1.35)' }}
                   draggable={false}
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
@@ -293,7 +293,7 @@ export function Hero() {
                 src={profilePhoto}
                 alt="Jasmine Shi"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 20%' }}
+                style={{ objectPosition: 'center 5%', transform: 'translateY(-8%) scale(1.35)' }}
                 draggable={false}
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
               />
