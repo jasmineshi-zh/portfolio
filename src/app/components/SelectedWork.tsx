@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { CaseStudyModal } from './CaseStudyModal';
 import { SectionHeader } from './ui/SectionHeader';
 import { ProjectCard } from './ui/ProjectCard';
-import { IMAMockup } from './IMAMockup';
 import { IMAModalContent } from './IMAModalContent';
 import { MicrosenseModalContent } from './MicrosenseModalContent';
 
@@ -88,7 +87,6 @@ export function SelectedWork() {
                 tagColor={project.tagColor}
                 accentBg={project.accentBg}
                 coverImage={project.coverImage}
-                coverElement={'coverElement' in project ? project.coverElement : undefined}
                 onClick={() => setSelectedProject(project)}
                 index={i}
               />
