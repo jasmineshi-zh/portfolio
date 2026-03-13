@@ -16,10 +16,9 @@ const projects = [
     problem:
       'How do we help people recognize and reflect on moments of subtle bias as they naturally occur in speech and body language?',
     role: 'UX Designer & Product Strategist',
-    timeline: '4 months',
-    year: '2025',
+    year: '2026',
     tag: 'UX Design',
-    tags: ['UX Design', 'Behavioral Design', 'AI Product'],
+    tags: ['UX Design', 'Behavioral Design', 'Vibe Coded'],
     stat: '35 early users · 60% increase in self-reported awareness',
     description:
       'A wearable product concept that surfaces subtle bias in real-time speech and body language to support reflection and long-term behavioral awareness.',
@@ -47,9 +46,7 @@ const projects = [
     accentColor: '#E8B4BC',
     accentBg: '#fdf0f2',
     tagColor: '#C4365A',
-    coverImage:
-      'https://images.unsplash.com/photo-1650407422773-2bcd0ac4f638?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXZlJTIwY29tbXVuaXR5JTIwY29ubmVjdGlvbnMlMjB3YXJtfGVufDF8fHx8MTc3MzE2NzY5OHww&ixlib=rb-4.1.0&q=80&w=1080',
-    coverElement: <IMAMockup />,
+    coverImage: '/images/ima_cover.jpg',
     overview:
       'Designing an alumni management system that enables meaningful, personalized connections across a growing community.',
     challenge:

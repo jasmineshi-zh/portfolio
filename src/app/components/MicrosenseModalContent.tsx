@@ -96,6 +96,9 @@ const decisions = [
       'Subtle bias and microaggressions often occur in complex social contexts where interruptions could increase discomfort or tension. By surfacing insights after interactions through timelines and summaries, the system supports thoughtful reflection without disrupting conversations.',
     screenshotHint: 'public/images/microsense/decision-1-screenshot.png',
     gifHint: 'public/images/microsense/decision-1.gif',
+    imageSrc: '/images/microsense/Reflect.png',
+    secondaryImageSrc: '/images/microsense/Patterns.png',
+    staggeredFeatures: { leftIndices: [1], rightIndices: [0] },
     uiFeatures: [
       { label: 'Conversation Timeline', detail: 'A scrollable post-interaction view maps moments chronologically, letting users revisit exchanges on their own time.' },
       { label: 'Insight Summary Cards', detail: 'Aggregated daily and weekly summaries replace per-moment notifications, reducing alert fatigue.' },
@@ -109,6 +112,9 @@ const decisions = [
       'Microaggressions are highly contextual and difficult to detect through language alone. Integrating multiple signals allows the system to capture both external interaction patterns and internal emotional responses, producing more meaningful insights.',
     screenshotHint: 'public/images/microsense/decision-2-screenshot.png',
     gifHint: 'public/images/microsense/decision-2.gif',
+    imageSrc: '/images/microsense/Speech.png',
+    secondaryImageSrc: '/images/microsense/Self_Doc.png',
+    staggeredFeatures: { leftIndices: [2], rightIndices: [0, 1] },
     uiFeatures: [
       { label: 'Speech Pattern Detection', detail: 'Analyzes interruptions, tone shifts, and word-choice patterns through passive audio processing.' },
       { label: 'Wearable Physiological Signals', detail: 'Heart rate variability and skin conductance from a paired wearable capture the user\'s internal stress response.' },
@@ -122,6 +128,10 @@ const decisions = [
       'Because the system interacts with sensitive social data, protecting user privacy and preventing surveillance was a core priority. These safeguards ensure the tool remains focused on personal awareness rather than monitoring others.',
     screenshotHint: 'public/images/microsense/decision-3-screenshot.png',
     gifHint: 'public/images/microsense/decision-3.gif',
+    imageSrc: '/images/microsense/Privacy.png',
+    secondaryImageSrc: '/images/microsense/Consent.png',
+    staggeredFeatures: { leftIndices: [2, 1], rightIndices: [0] },
+    secondaryImageOffset: '6rem',
     uiFeatures: [
       { label: 'On-Device Processing', detail: 'All signal analysis runs locally — no audio or raw sensor data is ever transmitted to external servers.' },
       { label: 'Manual Monitoring Controls', detail: 'Users start and stop sensing manually via a dedicated toggle; sensing never activates automatically.' },
@@ -164,10 +174,10 @@ export function MicrosenseModalContent() {
       {/* ── 3. Prototype Video ──────────────────────────────────── */}
       <section>
         <SectionLabel>Prototype</SectionLabel>
-        <AssetPlaceholder
-          label="Prototype Video"
-          hint="Replace with an <iframe> embed or <video> tag"
-          height={280}
+        <video
+          src="/images/MicroSense_Prototype.mp4"
+          controls
+          style={{ width: '100%', borderRadius: '8px', display: 'block' }}
         />
       </section>
 
@@ -225,72 +235,63 @@ export function MicrosenseModalContent() {
                 {d.caption}
               </p>
 
-              {/* Screenshot (left) + UI features (right) */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '1rem',
-                  marginBottom: '1rem',
-                  alignItems: 'start',
-                }}
-                className="decision-grid"
-              >
-                {/* Left: screenshot */}
-                <div>
-                  <AssetPlaceholder
-                    label="UI Screenshot"
-                    hint={d.screenshotHint}
-                    height={200}
-                  />
-                </div>
-
-                {/* Right: UI feature breakdown */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                  {d.uiFeatures.map((f) => (
-                    <div
-                      key={f.label}
-                      style={{
-                        padding: '0.75rem 1rem',
-                        borderRadius: 10,
-                        backgroundColor: PINK_LIGHT,
-                        borderLeft: `3px solid ${PINK_MID}`,
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: '0.75rem',
-                          fontWeight: 600,
-                          color: PINK,
-                          marginBottom: '0.2rem',
-                        }}
-                      >
-                        {f.label}
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: '0.75rem',
-                          color: '#5a4a44',
-                          lineHeight: 1.55,
-                          fontWeight: 300,
-                        }}
-                      >
-                        {f.detail}
-                      </p>
+              {'imageSrc' in d && d.imageSrc && 'secondaryImageSrc' in d && d.secondaryImageSrc && 'staggeredFeatures' in d && d.staggeredFeatures ? (
+                /* Staggered multi-screen composition */
+                (() => {
+                  const sf = d.staggeredFeatures as { leftIndices: number[]; rightIndices: number[] };
+                  return (
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start', paddingLeft: '2.5rem' }}>
+                      {/* Left column: tall screen → feature boxes */}
+                      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, gap: '1.25rem' }}>
+                        <img src={d.imageSrc} alt={d.title} style={{ width: '100%', borderRadius: 8, display: 'block' }} />
+                        {sf.leftIndices.map((i) => (
+                          <div key={i} style={{ padding: '0.75rem 1rem', borderRadius: 10, backgroundColor: PINK_LIGHT, borderRight: `3px solid ${PINK_MID}` }}>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: PINK, marginBottom: '0.2rem' }}>{d.uiFeatures[i].label}</p>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: '#5a4a44', lineHeight: 1.55, fontWeight: 300 }}>{d.uiFeatures[i].detail}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Right column: feature boxes → tall screen */}
+                      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, gap: '1.25rem', marginTop: '2.5rem' }}>
+                        {sf.rightIndices.map((i) => (
+                          <div key={i} style={{ padding: '0.75rem 1rem', borderRadius: 10, backgroundColor: PINK_LIGHT, borderLeft: `3px solid ${PINK_MID}` }}>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: PINK, marginBottom: '0.2rem' }}>{d.uiFeatures[i].label}</p>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: '#5a4a44', lineHeight: 1.55, fontWeight: 300 }}>{d.uiFeatures[i].detail}</p>
+                          </div>
+                        ))}
+                        <img src={d.secondaryImageSrc} alt="" style={{ width: '100%', borderRadius: 8, display: 'block', marginTop: ('secondaryImageOffset' in d ? d.secondaryImageOffset as string : '0') }} />
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Full-width GIF */}
-              <AssetPlaceholder
-                label="Feature GIF"
-                hint={d.gifHint}
-                height={180}
-                isGif
-              />
+                  );
+                })()
+              ) : (
+                <>
+                  {/* Standard layout */}
+                  <div
+                    style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem', alignItems: 'start' }}
+                    className="decision-grid"
+                  >
+                    <div style={{ margin: 0, padding: 0, alignSelf: 'start' }}>
+                      {'imageSrc' in d && d.imageSrc ? (
+                        <img src={d.imageSrc} alt={d.title} style={{ width: '100%', borderRadius: 8, display: 'block', margin: 0, padding: 0 }} />
+                      ) : (
+                        <AssetPlaceholder label="UI Screenshot" hint={d.screenshotHint} height={200} />
+                      )}
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', margin: 0, padding: 0, alignSelf: 'start' }}>
+                      {d.uiFeatures.map((f) => (
+                        <div key={f.label} style={{ padding: '0.75rem 1rem', borderRadius: 10, backgroundColor: PINK_LIGHT, borderLeft: `3px solid ${PINK_MID}` }}>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: PINK, marginBottom: '0.2rem' }}>{f.label}</p>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: '#5a4a44', lineHeight: 1.55, fontWeight: 300 }}>{f.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {'imageSrc' in d && d.imageSrc ? null : (
+                    <AssetPlaceholder label="Feature GIF" hint={d.gifHint} height={180} isGif />
+                  )}
+                </>
+              )}
             </div>
           ))}
         </div>

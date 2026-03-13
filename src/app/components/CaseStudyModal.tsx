@@ -15,7 +15,7 @@ interface CaseStudy {
   tag: string;
   problem: string;
   role: string;
-  timeline: string;
+  timeline?: string;
   year?: string;
   accentColor: string;
   coverImage?: string;
@@ -96,7 +96,7 @@ export function CaseStudyModal({ caseStudy, onClose }: CaseStudyModalProps) {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">{caseStudy.title}</h2>
                     <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm opacity-70">
                       <div><span className="font-medium">Role:</span><span className="font-light"> {caseStudy.role}</span></div>
-                      <div><span className="font-medium">Timeline:</span> <span className="font-light">{caseStudy.timeline}</span></div>
+                      {caseStudy.timeline && <div><span className="font-medium">Timeline:</span> <span className="font-light">{caseStudy.timeline}</span></div>}
                       {caseStudy.year && (
                         <div><span className="font-medium">Year:</span> <span className="font-light">{caseStudy.year}</span></div>
                       )}
