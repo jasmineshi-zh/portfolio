@@ -4,6 +4,7 @@ import { SectionHeader } from './ui/SectionHeader';
 import { ProjectCard } from './ui/ProjectCard';
 import { IMAModalContent } from './IMAModalContent';
 import { MicrosenseModalContent } from './MicrosenseModalContent';
+import { TrevorModalContent } from './TrevorModalContent';
 
 // Place your Microsense cover image at public/images/microsense-cover.png
 const microsenseImage = '/images/microsense-cover.png';
@@ -53,6 +54,26 @@ const projects = [
     customContent: <IMAModalContent />,
     insights:
       "The biggest unlock wasn't a feature — it was removing friction from the first impression. Once members could see a face, a tagline, and a few tags, reaching out felt personal rather than cold.",
+  },
+  {
+    id: '3',
+    title: 'The Trevor Project',
+    problem: 'How do we design a structured, centralized database to improve efficiency for crisis response services?',
+    role: 'UX Designer & Consultant',
+    year: '2024',
+    tag: 'UX Design',
+    tags: ['UX Design', 'Service Design', 'Nonprofit'],
+    stat: '',
+    description:
+      'Designing a structured, centralized database system to improve efficiency for crisis response services.',
+    accentColor: '#93C5FD',
+    accentBg: '#EFF6FF',
+    tagColor: '#1D4ED8',
+    coverImage: '/images/TrevorCover.png',
+    overview: '',
+    challenge: '',
+    customContent: <TrevorModalContent />,
+    insights: '',
   },
 ];
 
